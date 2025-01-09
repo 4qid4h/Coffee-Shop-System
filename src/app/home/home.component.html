@@ -1,0 +1,79 @@
+<!--PAGE display list order-->
+
+
+<app-navbar></app-navbar>
+  
+
+    <!--BACKGROUND COLOUR-->
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%); background-color: rgba(255, 255, 255, 0.1);"></div>
+    </div>
+    <!-- END BACKGROUND COLOUR-->
+
+    <!--TABLE-->
+  <div class="relative overflow-x-auto px-20 py-20">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+        <thead class="text-sm text-gray-700  bg-gray-300 dark:bg-grey-700 dark:text-grey-100">
+            <tr>
+                
+                <th scope="col" class="px-6 py-3">
+                    Order ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  QR Code
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Order
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Phone
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor ="let item of allregister" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{ item.id }}
+                </th>
+
+                <td class="px-6 py-4">
+                  <qrcode [qrdata]="'Order ID: ' + item.id" [allowEmptyString]="true"></qrcode>
+                </td>
+
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{ item.name }}
+                </td>
+                
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{ item.order }}
+                </td>
+
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{ item.phone }}
+                </td>
+                
+                
+                <td class="px-6 py-4">
+                    <button  type="button" [routerLink]="['/register/edit', item.id]" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+                      Edit
+                    </button>
+                    <button type="button" (click)="deleteItem(item.id)" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+                      Delete
+                    </button>
+                </td>
+
+
+            </tr> 
+        </tbody>
+    </table>
+</div>
+       
+
+
